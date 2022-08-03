@@ -1,0 +1,32 @@
+CREATE DATABASE db_marketplace;
+
+CREATE TABLE tb_usuarios (
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Usuario VARCHAR(255) NOT NULL,
+	Nome VARCHAR(255) NOT NULL,
+	Senha VARCHAR(255) NOT NULL,
+	Pessoa VARCHAR(255) NOT NULL,
+	url_imagem VARCHAR(255) NOT NULL);
+
+
+CREATE TABLE tb_compras (
+	FK_Usuario INT NOT NULL,
+	FK_Produto INT NOT NULL,
+	Data_Compra DATE NOT NULL,
+	FOREIGN KEY (FK_Usuario) REFERENCES tb_usuarios (Id),
+	FOREIGN KEY (FK_Produto) REFERENCES tb_produtos (Id));
+
+CREATE TABLE tb_produtos (
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Produto VARCHAR(255) NOT NULL,
+	Descricao VARCHAR(255) NOT NULL,
+	Valor FLOAT NOT NULL,
+	url_imagem VARCHAR(255) NOT NULL,
+	FK_Criador INT NOT NULL,
+	FK_Categoria INT NOT NULL
+	FOREIGN KEY (FK_Criador) REFERENCES tb_usuarios (Id),
+	FOREIGN KEY (FK_Categoria) REFERENCES tb_categoria (Id));
+
+CREATE TABLE tb_categoria(
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	categoria VARCHAR(255) NOT NULL);

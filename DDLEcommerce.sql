@@ -1,0 +1,27 @@
+CREATE DATABASE db_ecommerce;
+
+USE db_ecommerce;
+
+CREATE TABLE tb_usuarios (
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Nome VARCHAR(255) NOT NULL,
+	Usuario VARCHAR(255) NOT NULL,
+	Senha VARCHAR(255) NOT NULL,
+	Documento VARCHAR(255) NOT NULL);
+
+CREATE TABLE tb_produtos (
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Produto VARCHAR(255) NOT NULL,
+	Descricao VARCHAR(255) NOT NULL,
+	Valor FLOAT NOT NULL,
+	Estoque INT NOT NULL,
+	Categoria VARCHAR (255) NOT NULL,
+	url_imagem VARCHAR (255));
+
+
+CREATE TABLE tb_compras (
+	FK_Usuario INT NOT NULL,
+	FK_Produto INT NOT NULL,
+	Data_Compra DATE NOT NULL,
+	FOREIGN KEY (FK_Usuario) REFERENCES tb_usuarios (Id),
+	FOREIGN KEY (FK_Produto) REFERENCES tb_produtos (Id));
